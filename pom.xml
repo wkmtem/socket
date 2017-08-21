@@ -1,0 +1,392 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>rpc</groupId>
+  <artifactId>rpc</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>rpc</name>
+  <description/>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	
+  	<org.springframework-version>4.2.4.RELEASE</org.springframework-version>
+  	<org.mybatis-version>3.4.0</org.mybatis-version>
+  	<mybatis-spring-version>1.3.0</mybatis-spring-version>
+  	<mybatis-oscache-version>1.0.0</mybatis-oscache-version>
+  	<com.github.pagehelper-version>4.1.6</com.github.pagehelper-version>
+  	<mybatis-memcached-version>1.0.0</mybatis-memcached-version>
+  	<mysql-connector-java-version>5.1.38</mysql-connector-java-version>
+  	<c3p0-version>0.9.1.2</c3p0-version>
+  	<javax.servlet-api-version>3.1.0</javax.servlet-api-version>
+  	<cglib-nodep-version>3.2.0</cglib-nodep-version>
+  	<asm-all-version>3.3.1</asm-all-version>
+	<commons-beanutils-version>1.9.3</commons-beanutils-version>
+	<commons-codec-version>1.10</commons-codec-version>
+	<commons-dbcp-version>1.4</commons-dbcp-version>
+	<commons-digester-version>2.1</commons-digester-version>
+	<commons-fileupload-version>1.3.1</commons-fileupload-version>
+	<commons-lang3-version>3.4</commons-lang3-version>
+	<commons-httpclient-version>3.1</commons-httpclient-version>
+	<org.apache.httpcomponents-version>4.5.1</org.apache.httpcomponents-version>
+	<com.fasterxml.jackson.core-version>2.8.4</com.fasterxml.jackson.core-version>
+	<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
+	<org.json-version>20160212</org.json-version>
+	<com.google.code.gson-version>2.8.0</com.google.code.gson-version>
+  	<javax.servlet.jsp-version>2.2</javax.servlet.jsp-version>
+  	<javax.servlet-jstl-version>1.2</javax.servlet-jstl-version>
+  	<slf4j-log4j12-version>1.7.21</slf4j-log4j12-version>
+  	<ch.qos.logback-version>1.1.7</ch.qos.logback-version>
+  	<logback-ext-spring-version>0.1.4</logback-ext-spring-version>
+	<com.google.guava-version>19.0-rc1</com.google.guava-version>
+  	<dom4j-version>1.6.1</dom4j-version>
+  	<org.jdom-version>2.0.2</org.jdom-version>
+  	<org.quartz-scheduler-version>2.2.3</org.quartz-scheduler-version>
+  	<tk-filters-gzip-version>1.0.1</tk-filters-gzip-version>
+  	<com.thoughtworks.xstream-version>1.4.9</com.thoughtworks.xstream-version>
+  	<junit-version>4.12</junit-version>
+  	<hamcrest-core-version>1.3</hamcrest-core-version>
+  </properties>
+  
+  <dependencies>
+	<!-- [Spring] -->
+	<!-- spring-webmvc-4.2.4.RELEASE(include:web-4.2.4,core-4.2.4,aop-4.2.4,beans-4.2.4,
+		 context-4.2.4,expression-4.2.4,aopalliance-1.0,commons-logging-1.2) -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	<!-- spring-context-support-4.2.4.RELEASE(include:core-4.2.4,aop-4.2.4,beans-4.2.4,
+		 context-4.2.4,expression-4.2.4,aopalliance-1.0,commons-logging-1.2) -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	<!-- spring-orm-4.2.4.RELEASE(include:beans-4.2.4,core-4.2.4,jdbc-4.2.4,tx-4.2.4,
+		 commons-logging-1.2) -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	<!-- spring-test-4.2.4.RELEASE(include:core-4.2.4,commons-logging-1.2) -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	<!-- spring-aspects-4.2.4.RELEASE(include:aspectjweaver-1.8.7(depends aspectjrt-1.8.7)) -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aspects</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+	<!-- spring-jdbc-4.2.4.RELEASE(include:beans-4.2.4,core-4.2.4,tx-4.2.4,commons-logging-1.2) -->
+	<!-- <dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency> -->
+	<!-- spring-web-4.2.4.RELEASE(include:core-4.2.4,aop-4.2.4,beans-4.2.4,context-4.2.4,
+		 expression-4.2.4,aopalliance-1.0,commons-logging-1.2) -->
+	<!-- <dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-web</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency> -->
+	
+	<!-- [mybatis] -->
+	<!-- mybatis-3.4.0 -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>${org.mybatis-version}</version>
+	</dependency>
+	<!-- mybatis-spring-1.3.0 -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>${mybatis-spring-version}</version>
+	</dependency>
+	<!-- mybatis-oscache-1.0.0(include:oscache-2.4) -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-oscache</artifactId>
+	    <version>${mybatis-oscache-version}</version>
+	</dependency>
+	<!-- mybatis-pageHelper-4.1.6(include:jsqlparser-0.9.5) -->
+	<dependency>
+	    <groupId>com.github.pagehelper</groupId>
+	    <artifactId>pagehelper</artifactId>
+	    <version>${com.github.pagehelper-version}</version>
+	</dependency>
+	<!-- mybatis-memcached-1.0.0 -->
+	<dependency>
+	    <groupId>org.mybatis.caches</groupId>
+	    <artifactId>mybatis-memcached</artifactId>
+	    <version>${mybatis-memcached-version}</version>
+	</dependency>
+	
+	<!-- [sql] -->
+	<!-- mysql-connector-java-5.1.38 -->
+    <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>${mysql-connector-java-version}</version>
+    </dependency>
+    <!-- connect-pool c3p0-0.9.1.2(2007-8-23) -->
+	<dependency>
+		<groupId>c3p0</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>${c3p0-version}</version>
+	</dependency>
+	
+	<!-- [servlet] -->
+	<!-- javax.servlet-api-3.1.0 -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>${javax.servlet-api-version}</version>
+	</dependency>
+	
+	<!-- [reflect] -->
+	<!-- cglib-nodep-3.2.0 -->
+	<dependency>
+	    <groupId>cglib</groupId>
+	    <artifactId>cglib-nodep</artifactId>
+	    <version>${cglib-nodep-version}</version>
+	</dependency>
+	<!-- asm-all-3.3.1(ps:cglib depends) -->
+	<dependency>
+	    <groupId>asm</groupId>
+	    <artifactId>asm-all</artifactId>
+	    <version>${asm-all-version}</version>
+	</dependency>
+	
+	<!-- [commons] -->
+	<!-- commons-beanutils-1.9.3(include:commons-logging-1.2,commons-collections-3.2.2) -->
+	<dependency>
+	    <groupId>commons-beanutils</groupId>
+	    <artifactId>commons-beanutils</artifactId>
+	    <version>${commons-beanutils-version}</version>
+	</dependency>
+	<!-- commons-codec-1.10(ps:incode or decode for DES\u3001SHA1\u3001MD5\u3001Base64\uff0cURL\uff0cSoundx) -->
+	<dependency>
+		<groupId>commons-codec</groupId>
+		<artifactId>commons-codec</artifactId>
+		<version>${commons-codec-version}</version>
+	</dependency>
+	<!-- commons-dbcp-1.4(include:commons-pool-1.5.4) -->
+	<dependency>
+	    <groupId>commons-dbcp</groupId>
+	    <artifactId>commons-dbcp</artifactId>
+	    <version>${commons-dbcp-version}</version>
+	</dependency>
+	<!-- commons-digester-2.1(ps:SAX parser,XML to java Object) -->
+	<dependency>
+	    <groupId>commons-digester</groupId>
+	    <artifactId>commons-digester</artifactId>
+	    <version>${commons-digester-version}</version>
+	</dependency>
+	<!-- commons-fileupload-1.3.1(include:commons-io-2.2) -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>${commons-fileupload-version}</version>
+	</dependency>
+	<!-- commons-lang3-3.4 -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>${commons-lang3-version}</version>
+	</dependency>
+	<!--  commons-httpclient-3.1 -->
+	<dependency>
+	    <groupId>commons-httpclient</groupId>
+	    <artifactId>commons-httpclient</artifactId>
+	    <version>${commons-httpclient-version}</version>
+	</dependency>
+	<!-- httpclient-4.5.1(include:httpcore-4.4.3) -->
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	    <version>${org.apache.httpcomponents-version}</version>
+	</dependency>
+	
+	<!-- [JSON] -->
+	<!-- jackson-databind-2.8.4 (springMVC-4.2.1 depends) -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>${com.fasterxml.jackson.core-version}</version>
+	</dependency>
+	<!-- jackson-core-2.8.4 (springMVC-4.2.1 depends) -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	    <version>${com.fasterxml.jackson.core-version}</version>
+	</dependency>
+	<!-- jackson-annotations-2.8.4 (springMVC-4.2.1 depends) -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-annotations</artifactId>
+	    <version>${com.fasterxml.jackson.core-version}</version>
+	</dependency>
+	<!-- MemCachedAOPAspect \u4f7f\u7528-->
+	<!-- jackson-mapper-lgpl-1.9.13(include:jackson-core-lgpl-1.9.13) -->
+	<dependency>  
+	    <groupId>org.codehaus.jackson</groupId>  
+	    <artifactId>jackson-mapper-lgpl</artifactId>  
+	    <version>${org.codehaus.jackson-version}</version>  
+	</dependency>
+	<!-- json-20160212(captcha \u4f7f\u7528) -->
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>${org.json-version}</version>
+	</dependency>
+	<!-- [GSON] -->
+	<!-- com.google.code.gson-2.8.0 -->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    <version>${com.google.code.gson-version}</version>
+	</dependency>
+	
+	<!-- [jsp] -->
+	<!-- jsp-api-2.2 -->
+	<dependency>
+	    <groupId>javax.servlet.jsp</groupId>
+	    <artifactId>jsp-api</artifactId>
+	    <version>${javax.servlet.jsp-version}</version>
+	</dependency>
+	
+	<!-- [jstl] -->
+	<!-- jstl-1.2(ps:\u4e0d\u9700\u8981impl\u6269\u5c55\u5305) -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>${javax.servlet-jstl-version}</version> 
+	</dependency>
+	
+	<!-- Logging Frameworks -->
+	<!-- slf4j-log4j12-1.7.21(include:slf4j-api-1.7.21,log4j-1.2.17) -->
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-log4j12</artifactId>
+	    <version>${slf4j-log4j12-version}</version>
+	</dependency>
+	<!-- log component:logback-access-1.1.7(include:logback-core-1.1.7) -->
+    <dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-access</artifactId>
+		<version>${ch.qos.logback-version}</version>
+    </dependency>
+    <!-- log component:logback-classic-1.1.7 -->
+    <dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>${ch.qos.logback-version}</version>
+    </dependency>
+    <!-- logback for spring:logback-ext-spring-0.1.4 -->
+    <dependency>
+	    <groupId>org.logback-extensions</groupId>
+	    <artifactId>logback-ext-spring</artifactId>
+	    <version>${logback-ext-spring-version}</version>
+	</dependency>
+	
+	<!-- [others] -->
+	<!-- dom4j-1.6.1(include:xml-apis-1.0.b2) -->
+	<dependency>
+		<groupId>dom4j</groupId>
+		<artifactId>dom4j</artifactId>
+		<version>${dom4j-version}</version>
+	</dependency>
+	<!-- jdom-(ps:xml) -->
+	<dependency>
+    	<groupId>org.jdom</groupId>
+	    <artifactId>jdom</artifactId>
+	    <version>${org.jdom-version}</version>
+	</dependency>
+	<!-- quartz-2.2.3 -->
+	<dependency>
+		<groupId>org.quartz-scheduler</groupId>
+		<artifactId>quartz</artifactId>
+		<version>${org.quartz-scheduler-version}</version>
+	</dependency>
+	<!-- gzip-1.0.1 -->
+	<dependency>
+	  <groupId>gzip</groupId>
+	  <artifactId>tk-filters</artifactId>
+	  <version>${tk-filters-gzip-version}</version>
+	</dependency>
+	<!-- Object to xml:xstream-1.4.9(include:xmlpull-1.1.3.1,xpp3-min-1.1.4) -->
+	<dependency>
+	    <groupId>com.thoughtworks.xstream</groupId>
+	    <artifactId>xstream</artifactId>
+	    <version>${com.thoughtworks.xstream-version}</version>
+	</dependency>
+  	<!-- junit4.10(include:hamcrest-core-1.1)-->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit-version}</version>
+		<type>jar</type>
+	</dependency>
+	<!-- hamcrest-core-1.3(ps:mybatis-memcached depends) -->
+	<dependency>
+	    <groupId>org.hamcrest</groupId>
+	    <artifactId>hamcrest-core</artifactId>
+	    <version>${hamcrest-core-version}</version>
+	</dependency>
+
+	<!-- com.google.guava-19.0-rc1 -->
+	<dependency>
+	    <groupId>com.google.guava</groupId>
+	    <artifactId>guava</artifactId>
+	    <version>${com.google.guava-version}</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <!-- Auto redeploy tomcat -->
+      <plugin>
+		<groupId>org.apache.tomcat.maven</groupId>
+		<artifactId>tomcat7-maven-plugin</artifactId>
+		<version>2.2</version>
+		<configuration>
+			<!-- 开发测试 -->
+			<url>http:///compass/text</url>
+			<!-- 灰度(客户) -->
+			<!-- <url>http:///compass/text</url> -->
+			<path>/</path>
+			<server>tomcat</server>
+			<username>compass</username>
+			<password>compass60192088</password>
+		</configuration>
+	  </plugin>
+	  
+	  <!-- Support switch String -->
+       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+
+      <!-- <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <version>3.0</version>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin> -->
+    </plugins>
+  </build>
+</project>
